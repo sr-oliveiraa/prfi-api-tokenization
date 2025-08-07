@@ -59,8 +59,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/sr-oliveiraa/prfi-protocol-publish.git
-cd prfi-protocol-publish
+git clone https://github.com/sr-oliveiraa/prfi-api-tokenization.git
+cd prfi-api-tokenization
 
 # Install dependencies
 npm install
