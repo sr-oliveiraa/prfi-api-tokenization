@@ -1,0 +1,278 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Fontes personalizadas */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Variáveis CSS customizadas */
+:root {
+  --prfi-primary: #3b82f6;
+  --prfi-primary-dark: #2563eb;
+  --prfi-secondary: #8b5cf6;
+  --prfi-success: #10b981;
+  --prfi-warning: #f59e0b;
+  --prfi-error: #ef4444;
+  --prfi-gray-50: #f8fafc;
+  --prfi-gray-100: #f1f5f9;
+  --prfi-gray-900: #0f172a;
+  
+  /* Gradientes */
+  --prfi-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --prfi-gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  --prfi-gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  
+  /* Sombras */
+  --prfi-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --prfi-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --prfi-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* Transições */
+  --prfi-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --prfi-transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset e base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: #334155;
+  background-color: var(--prfi-gray-50);
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Componentes customizados */
+.prfi-card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6;
+  transition: var(--prfi-transition);
+}
+
+.prfi-card:hover {
+  @apply shadow-md;
+  transform: translateY(-1px);
+}
+
+.prfi-button-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors;
+}
+
+.prfi-button-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-medium py-2 px-4 rounded-md transition-colors;
+}
+
+.prfi-input {
+  @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.prfi-badge-success {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200;
+}
+
+.prfi-badge-warning {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200;
+}
+
+.prfi-badge-error {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-200;
+}
+
+.prfi-badge-info {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200;
+}
+
+/* Animações customizadas */
+@keyframes prfi-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes prfi-bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes prfi-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prfi-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes prfi-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.prfi-animate-pulse {
+  animation: prfi-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.prfi-animate-bounce {
+  animation: prfi-bounce 1s infinite;
+}
+
+.prfi-animate-spin {
+  animation: prfi-spin 1s linear infinite;
+}
+
+.prfi-animate-fade-in {
+  animation: prfi-fade-in 0.3s ease-out;
+}
+
+.prfi-animate-slide-in-right {
+  animation: prfi-slide-in-right 0.3s ease-out;
+}
+
+/* Estados de loading */
+.prfi-skeleton {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+}
+
+.prfi-loading-dots::after {
+  content: '';
+  animation: prfi-pulse 1.5s ease-in-out infinite;
+}
+
+/* Utilitários de gradiente */
+.prfi-gradient-primary {
+  background: var(--prfi-gradient-primary);
+}
+
+.prfi-gradient-success {
+  background: var(--prfi-gradient-success);
+}
+
+.prfi-gradient-warning {
+  background: var(--prfi-gradient-warning);
+}
+
+/* Responsividade customizada */
+@media (max-width: 640px) {
+  .prfi-card {
+    @apply p-4;
+  }
+}
+
+/* Estados de foco melhorados */
+.prfi-focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800;
+}
+
+/* Transições suaves para tema escuro */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .prfi-card {
+    @apply shadow-none border border-gray-300;
+  }
+}
+
+/* Acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .prfi-card {
+    @apply border-2 border-gray-900 dark:border-white;
+  }
+  
+  .prfi-button-primary {
+    @apply border-2 border-blue-800;
+  }
+}
+
+/* Seleção de texto customizada */
+::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #3b82f6;
+  color: white;
+}

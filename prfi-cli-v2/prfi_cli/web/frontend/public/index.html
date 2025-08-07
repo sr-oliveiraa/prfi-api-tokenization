@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/prfi-logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PRFI Protocol - Dashboard para monitoramento de APIs resilientes e mineração de tokens" />
+    <meta name="keywords" content="PRFI, API, resilience, tokens, blockchain, dashboard" />
+    <meta name="author" content="PRFI Protocol Team" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://prfi-protocol.com/" />
+    <meta property="og:title" content="PRFI Protocol Dashboard" />
+    <meta property="og:description" content="Dashboard para monitoramento de APIs resilientes e mineração de tokens" />
+    <meta property="og:image" content="/prfi-preview.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://prfi-protocol.com/" />
+    <meta property="twitter:title" content="PRFI Protocol Dashboard" />
+    <meta property="twitter:description" content="Dashboard para monitoramento de APIs resilientes e mineração de tokens" />
+    <meta property="twitter:image" content="/prfi-preview.png" />
+
+    <title>PRFI Protocol Dashboard</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <style>
+      /* Critical CSS for loading state */
+      body {
+        margin: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f8fafc;
+      }
+      
+      .loading-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+        margin-bottom: 20px;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      
+      .loading-subtitle {
+        font-size: 14px;
+        opacity: 0.8;
+      }
+      
+      /* Hide loading when React loads */
+      #root:not(:empty) + .loading-container {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Loading fallback -->
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">PRFI Protocol</div>
+      <div class="loading-subtitle">Carregando dashboard...</div>
+    </div>
+    
+    <!-- Error fallback -->
+    <script>
+      window.addEventListener('error', function(e) {
+        console.error('PRFI Dashboard Error:', e.error);
+        
+        // Show user-friendly error if React fails to load
+        if (!document.getElementById('root').hasChildNodes()) {
+          document.querySelector('.loading-text').textContent = 'Erro ao carregar';
+          document.querySelector('.loading-subtitle').textContent = 'Recarregue a página ou verifique sua conexão';
+          document.querySelector('.loading-spinner').style.display = 'none';
+        }
+      });
+      
+      // Service Worker registration (optional)
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
